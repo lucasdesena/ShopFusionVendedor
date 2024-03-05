@@ -26,7 +26,7 @@ class _VendedorCadastroPageState extends State<VendedorCadastroPage> {
   late String estado;
   late String cidade;
 
-  Future<void> selectGalleryImage() async {
+  Future<void> selecionarImagemGaleria() async {
     Uint8List? img = await _vendedorcontroller.pegarImagem(ImageSource.gallery);
 
     setState(() {
@@ -34,7 +34,7 @@ class _VendedorCadastroPageState extends State<VendedorCadastroPage> {
     });
   }
 
-  Future<void> selectCameraImage() async {
+  Future<void> selecionarImagemCamera() async {
     Uint8List? img = await _vendedorcontroller.pegarImagem(ImageSource.camera);
 
     setState(() {
@@ -57,7 +57,8 @@ class _VendedorCadastroPageState extends State<VendedorCadastroPage> {
                     child: Container(
                       height: 90,
                       width: 90,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
                         color: Colors.white,
                       ),
                       child: _image != null
@@ -71,7 +72,7 @@ class _VendedorCadastroPageState extends State<VendedorCadastroPage> {
                             )
                           : IconButton(
                               onPressed: () async {
-                                await selectGalleryImage();
+                                await selecionarImagemGaleria();
                               },
                               icon: const Icon(Icons.photo),
                             ),
