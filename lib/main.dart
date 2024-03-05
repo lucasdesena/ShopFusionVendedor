@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:shop_fusion_vendedor/vendor/views/vendedor_auth_page.dart';
+import 'package:shop_fusion_vendedor/vendedor/views/auth/vendedor_auth_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,11 +9,11 @@ void main() async {
 
   await Firebase.initializeApp(
     options: FirebaseOptions(
-      apiKey: dotenv.get('FirebaseApiKey'),
-      appId: dotenv.get('FirebaseAppID'),
-      messagingSenderId: dotenv.get('FirebaseProjectNumber'),
-      projectId: dotenv.get('FirebaseProjectId'),
-    ),
+        apiKey: dotenv.get('FirebaseApiKey'),
+        appId: dotenv.get('FirebaseAppID'),
+        messagingSenderId: dotenv.get('FirebaseProjectNumber'),
+        projectId: dotenv.get('FirebaseProjectId'),
+        storageBucket: dotenv.get('FirebaseStorageBucket')),
   );
   runApp(const MyApp());
 }

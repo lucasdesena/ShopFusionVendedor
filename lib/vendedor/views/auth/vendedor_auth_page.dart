@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_fusion_vendedor/vendor/views/vendedor_cadastro_page.dart';
+import 'package:shop_fusion_vendedor/vendedor/views/auth/vendedor_cadastro_page.dart';
 
 class VendedorAuthPage extends StatefulWidget {
   const VendedorAuthPage({super.key});
@@ -17,7 +17,7 @@ class _VendedorAuthPageState extends State<VendedorAuthPage> {
       stream: FirebaseAuth.instance.authStateChanges(),
       initialData: FirebaseAuth.instance.currentUser,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
+        if (!snapshot.hasData) {
           return SignInScreen(
             providers: [
               EmailAuthProvider(),
