@@ -194,7 +194,9 @@ class _VendedorCadastroPageState extends State<VendedorCadastroPage> {
                                     cidade,
                                     _image,
                                   )
-                                  .whenComplete(() => EasyLoading.dismiss());
+                                  .whenComplete(
+                                    () => EasyLoading.dismiss(),
+                                  );
                             } else {
                               debugPrint('Deu ruim');
                             }
