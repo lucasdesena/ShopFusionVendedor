@@ -14,7 +14,7 @@ class _EnvioPageState extends State<EnvioPage> {
 
   @override
   Widget build(BuildContext context) {
-    final ProdutoProvider _produtoProvider =
+    final ProdutoProvider produtoProvider =
         Provider.of<ProdutoProvider>(context);
     return Scaffold(
       body: Column(
@@ -27,14 +27,14 @@ class _EnvioPageState extends State<EnvioPage> {
                   _cobrarFrete = value!;
                 });
 
-                _produtoProvider.getFormData(cobrarFrete: value);
+                produtoProvider.getFormData(cobrarFrete: value);
               }),
           _cobrarFrete
               ? Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: TextFormField(
                     onChanged: (value) {
-                      _produtoProvider.getFormData(
+                      produtoProvider.getFormData(
                           precoProduto: double.parse(value));
                     },
                     keyboardType: TextInputType.number,

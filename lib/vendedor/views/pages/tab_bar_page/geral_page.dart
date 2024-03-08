@@ -36,7 +36,7 @@ class _GeralPageState extends State<GeralPage> {
 
   @override
   Widget build(BuildContext context) {
-    final ProdutoProvider _produtoProvider =
+    final ProdutoProvider produtoProvider =
         Provider.of<ProdutoProvider>(context);
     return Scaffold(
       body: Padding(
@@ -46,7 +46,7 @@ class _GeralPageState extends State<GeralPage> {
             children: [
               TextFormField(
                 onChanged: (value) {
-                  _produtoProvider.getFormData(nomeProduto: value);
+                  produtoProvider.getFormData(nomeProduto: value);
                 },
                 decoration: const InputDecoration(
                   labelText: 'Insira o nome do produto',
@@ -57,7 +57,7 @@ class _GeralPageState extends State<GeralPage> {
               const SizedBox(height: 20),
               TextFormField(
                 onChanged: (value) {
-                  _produtoProvider.getFormData(
+                  produtoProvider.getFormData(
                       precoProduto: double.parse(value));
                 },
                 decoration: const InputDecoration(
@@ -69,7 +69,7 @@ class _GeralPageState extends State<GeralPage> {
               const SizedBox(height: 20),
               TextFormField(
                 onChanged: (value) {
-                  _produtoProvider.getFormData(
+                  produtoProvider.getFormData(
                       quantidadeProduto: int.parse(value));
                 },
                 decoration: const InputDecoration(
@@ -93,13 +93,13 @@ class _GeralPageState extends State<GeralPage> {
                   return DropdownMenuItem(value: e, child: Text(e));
                 }).toList(),
                 onChanged: (value) {
-                  _produtoProvider.getFormData(categoria: value);
+                  produtoProvider.getFormData(categoria: value);
                 },
               ),
               const SizedBox(height: 20),
               TextFormField(
                 onChanged: (value) {
-                  _produtoProvider.getFormData(descicao: value);
+                  produtoProvider.getFormData(descicao: value);
                 },
                 maxLines: 10,
                 minLines: 3,

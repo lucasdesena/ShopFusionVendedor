@@ -11,6 +11,8 @@ class ProdutoProvider with ChangeNotifier {
     String? descicao,
     bool? cobrarFrete,
     double? precoFrete,
+    String? marca,
+    List<String>? medidas,
   }) {
     if (nomeProduto != null) {
       produtoData['nome_produto'] = nomeProduto;
@@ -32,6 +34,12 @@ class ProdutoProvider with ChangeNotifier {
     }
     if (precoFrete != null) {
       produtoData['preço_frete'] = produtoData;
+    }
+    if (marca != null) {
+      produtoData['marca'] = marca;
+    }
+    if (medidas != null) {
+      produtoData['medidas'] = medidas;
     }
 
     notifyListeners();
