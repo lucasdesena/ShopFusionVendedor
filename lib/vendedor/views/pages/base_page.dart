@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_fusion_vendedor/models/vendedor_model.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/auth/vendedor_cadastro_page.dart';
-import 'package:shop_fusion_vendedor/vendedor/views/pages/vendedor_mapa_page.dart';
+import 'package:shop_fusion_vendedor/vendedor/views/pages/vendedor_main_page.dart';
 
 class BasePage extends StatelessWidget {
   BasePage({super.key});
@@ -20,7 +20,7 @@ class BasePage extends StatelessWidget {
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasError) {
-            return const Text('Algo de errado aconteceu');
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -35,7 +35,7 @@ class BasePage extends StatelessWidget {
               snapshot.data!.data() as Map<String, dynamic>);
 
           if (vendedorModel.aprovado) {
-            return const VendedorMapaPage();
+            return const VendedorMainPage();
           }
           return Padding(
             padding: const EdgeInsets.all(8.0),
