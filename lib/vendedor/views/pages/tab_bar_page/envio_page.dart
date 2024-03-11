@@ -9,13 +9,19 @@ class EnvioPage extends StatefulWidget {
   State<EnvioPage> createState() => _EnvioPageState();
 }
 
-class _EnvioPageState extends State<EnvioPage> {
+class _EnvioPageState extends State<EnvioPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   bool _cobrarFrete = false;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final ProdutoProvider produtoProvider =
         Provider.of<ProdutoProvider>(context);
+
     return Scaffold(
       body: Column(
         children: [

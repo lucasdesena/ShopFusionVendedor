@@ -15,13 +15,17 @@ class ImagensPage extends StatefulWidget {
   State<ImagensPage> createState() => _ImagensPageState();
 }
 
-class _ImagensPageState extends State<ImagensPage> {
+class _ImagensPageState extends State<ImagensPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final ImagePicker picker = ImagePicker();
 
-  List<File> _imagens = [];
+  final List<File> _imagens = [];
 
-  List<String> _imagensUrl = [];
+  final List<String> _imagensUrl = [];
 
   ///Método para selecionar uma imagem da galeria para o produto
   Future<void> escolherImagem() async {
@@ -38,7 +42,9 @@ class _ImagensPageState extends State<ImagensPage> {
 
   @override
   Widget build(BuildContext context) {
-    final ProdutoProvider _produtoProvider = Provider.of(context);
+    super.build(context);
+    final ProdutoProvider produtoProvider = Provider.of(context);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -92,7 +98,7 @@ class _ImagensPageState extends State<ImagensPage> {
                     EasyLoading.dismiss();
                   });
 
-                  _produtoProvider.getFormData(imagensUrl: _imagensUrl);
+                  produtoProvider.getFormData(imagensUrl: _imagensUrl);
                 }
               },
               child: const Text(

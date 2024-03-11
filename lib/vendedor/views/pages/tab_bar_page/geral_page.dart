@@ -10,7 +10,11 @@ class GeralPage extends StatefulWidget {
   State<GeralPage> createState() => _GeralPageState();
 }
 
-class _GeralPageState extends State<GeralPage> {
+class _GeralPageState extends State<GeralPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   final FirebaseFirestore _firebase = FirebaseFirestore.instance;
 
   final List<String> _categorias = [];
@@ -36,8 +40,10 @@ class _GeralPageState extends State<GeralPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final ProdutoProvider produtoProvider =
         Provider.of<ProdutoProvider>(context);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),

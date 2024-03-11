@@ -9,7 +9,11 @@ class AtributosPage extends StatefulWidget {
   State<AtributosPage> createState() => _AtributosPageState();
 }
 
-class _AtributosPageState extends State<AtributosPage> {
+class _AtributosPageState extends State<AtributosPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   final TextEditingController _tamanhoController = TextEditingController();
   bool _isIntroduzido = false;
   bool _isSalvo = false;
@@ -18,8 +22,10 @@ class _AtributosPageState extends State<AtributosPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final ProdutoProvider produtoProvider =
         Provider.of<ProdutoProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
