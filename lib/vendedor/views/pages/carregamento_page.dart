@@ -4,8 +4,15 @@ import 'package:shop_fusion_vendedor/vendedor/views/pages/tab_bar_page/envio_pag
 import 'package:shop_fusion_vendedor/vendedor/views/pages/tab_bar_page/geral_page.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/tab_bar_page/imagens_page.dart';
 
-class CarregamentoPage extends StatelessWidget {
+class CarregamentoPage extends StatefulWidget {
   const CarregamentoPage({super.key});
+
+  @override
+  State<CarregamentoPage> createState() => _CarregamentoPageState();
+}
+
+class _CarregamentoPageState extends State<CarregamentoPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +29,16 @@ class CarregamentoPage extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
-          children: [
-            GeralPage(),
-            EnvioPage(),
-            AtributosPage(),
-            ImagensPage(),
-          ],
+        body: Form(
+          key: _formKey,
+          child: const TabBarView(
+            children: [
+              GeralPage(),
+              EnvioPage(),
+              AtributosPage(),
+              ImagensPage(),
+            ],
+          ),
         ),
         bottomSheet: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -36,7 +46,9 @@ class CarregamentoPage extends StatelessWidget {
             height: 50,
             width: MediaQuery.of(context).size.width,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {}
+              },
               child: const Center(
                   child: Text(
                 'Enviar produto',

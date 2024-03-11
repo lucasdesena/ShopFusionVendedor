@@ -31,6 +31,12 @@ class _AtributosPageState extends State<AtributosPage>
       child: Column(
         children: [
           TextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Insira a marca do produto';
+              }
+              return null;
+            },
             onChanged: (value) {
               produtoProvider.getFormData(marca: value);
             },

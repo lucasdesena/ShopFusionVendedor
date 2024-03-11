@@ -39,6 +39,12 @@ class _EnvioPageState extends State<EnvioPage>
               ? Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Insira o valor do frete';
+                      }
+                      return null;
+                    },
                     onChanged: (value) {
                       produtoProvider.getFormData(
                           precoProduto: double.parse(value));

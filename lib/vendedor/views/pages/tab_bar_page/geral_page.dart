@@ -19,7 +19,8 @@ class _GeralPageState extends State<GeralPage>
 
   final List<String> _categorias = [];
 
-  _getCategorias() {
+  ///Método para obter a lista de categorias do firebase
+  Future<dynamic> _getCategorias() {
     return _firebase
         .collection('categorias')
         .get()
@@ -51,6 +52,12 @@ class _GeralPageState extends State<GeralPage>
           child: Column(
             children: [
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Insira o nome do produto';
+                  }
+                  return null;
+                },
                 onChanged: (value) {
                   produtoProvider.getFormData(nomeProduto: value);
                 },
@@ -62,6 +69,12 @@ class _GeralPageState extends State<GeralPage>
               ),
               const SizedBox(height: 20),
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Insira o preço do produto';
+                  }
+                  return null;
+                },
                 onChanged: (value) {
                   produtoProvider.getFormData(
                       precoProduto: double.parse(value));
@@ -74,12 +87,17 @@ class _GeralPageState extends State<GeralPage>
               ),
               const SizedBox(height: 20),
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Insira a quantidade do produto';
+                  }
+                  return null;
+                },
                 onChanged: (value) {
                   produtoProvider.getFormData(
                       quantidadeProduto: int.parse(value));
                 },
                 decoration: const InputDecoration(
-                  hintText: 'Insira a quantidade do produto',
                   labelText: 'Insira a quantidade do produto',
                   labelStyle:
                       TextStyle(fontWeight: FontWeight.bold, letterSpacing: 4),
@@ -104,6 +122,12 @@ class _GeralPageState extends State<GeralPage>
               ),
               const SizedBox(height: 20),
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Insira a descrição do produto';
+                  }
+                  return null;
+                },
                 onChanged: (value) {
                   produtoProvider.getFormData(descicao: value);
                 },

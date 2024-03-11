@@ -81,29 +81,33 @@ class _ImagensPageState extends State<ImagensPage>
                       );
               },
             ),
-            ElevatedButton(
-              onPressed: () async {
-                EasyLoading.show(status: 'Carregando');
-                for (var img in _imagens) {
-                  Reference ref = _storage.ref().child('imagem_produto').child(
-                        const Uuid().v4(),
-                      );
+            Visibility(
+              visible: _imagens.isNotEmpty,
+              child: ElevatedButton(
+                onPressed: () async {
+                  EasyLoading.show(status: 'Carregando');
+                  for (var img in _imagens) {
+                    Reference ref =
+                        _storage.ref().child('imagem_produto').child(
+                              const Uuid().v4(),
+                            );
 
-                  await ref.putFile(img).whenComplete(() async {
-                    await ref.getDownloadURL().then((url) {
-                      setState(() {
-                        _imagensUrl.add(url);
+                    await ref.putFile(img).whenComplete(() async {
+                      await ref.getDownloadURL().then((url) {
+                        setState(() {
+                          _imagensUrl.add(url);
+                        });
                       });
+                      EasyLoading.dismiss();
                     });
-                    EasyLoading.dismiss();
-                  });
 
-                  produtoProvider.getFormData(imagensUrl: _imagensUrl);
-                }
-              },
-              child: const Text(
-                'Enviar imagens',
-                style: TextStyle(color: Colors.white),
+                    produtoProvider.getFormData(imagensUrl: _imagensUrl);
+                  }
+                },
+                child: const Text(
+                  'Enviar imagens',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
           ],
