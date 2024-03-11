@@ -1,7 +1,12 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_fusion_vendedor/vendedor/provider/produto_provider.dart';
+import 'package:uuid/uuid.dart';
 
 class ImagensPage extends StatefulWidget {
   const ImagensPage({super.key});
@@ -11,10 +16,14 @@ class ImagensPage extends StatefulWidget {
 }
 
 class _ImagensPageState extends State<ImagensPage> {
+  final FirebaseStorage _storage = FirebaseStorage.instance;
   final ImagePicker picker = ImagePicker();
 
-  List<File> _imagem = [];
+  List<File> _imagens = [];
 
+  List<String> _imagensUrl = [];
+
+  ///Método para selecionar uma imagem da galeria para o produto
   Future<void> escolherImagem() async {
     final imagemEscolhida = await picker.pickImage(source: ImageSource.gallery);
 
@@ -22,13 +31,14 @@ class _ImagensPageState extends State<ImagensPage> {
       debugPrint('Nenhuma imagem escolhida');
     } else {
       setState(() {
-        _imagem.add(File(imagemEscolhida.path));
+        _imagens.add(File(imagemEscolhida.path));
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final ProdutoProvider _produtoProvider = Provider.of(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -36,7 +46,7 @@ class _ImagensPageState extends State<ImagensPage> {
           children: [
             GridView.builder(
               shrinkWrap: true,
-              itemCount: _imagem.length + 1,
+              itemCount: _imagens.length + 1,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisSpacing: 8,
@@ -58,13 +68,38 @@ class _ImagensPageState extends State<ImagensPage> {
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                            image: FileImage(_imagem[index - 1]),
+                            image: FileImage(_imagens[index - 1]),
                             fit: BoxFit.cover,
                           ),
                         ),
                       );
               },
-            )
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                EasyLoading.show(status: 'Carregando');
+                for (var img in _imagens) {
+                  Reference ref = _storage.ref().child('imagem_produto').child(
+                        const Uuid().v4(),
+                      );
+
+                  await ref.putFile(img).whenComplete(() async {
+                    await ref.getDownloadURL().then((url) {
+                      setState(() {
+                        _imagensUrl.add(url);
+                      });
+                    });
+                    EasyLoading.dismiss();
+                  });
+
+                  _produtoProvider.getFormData(imagensUrl: _imagensUrl);
+                }
+              },
+              child: const Text(
+                'Enviar imagens',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
           ],
         ),
       ),

@@ -13,6 +13,7 @@ class ProdutoProvider with ChangeNotifier {
     double? precoFrete,
     String? marca,
     List<String>? medidas,
+    List<String>? imagensUrl,
   }) {
     if (nomeProduto != null) {
       produtoData['nome_produto'] = nomeProduto;
@@ -40,6 +41,9 @@ class ProdutoProvider with ChangeNotifier {
     }
     if (medidas != null) {
       produtoData['medidas'] = medidas;
+    }
+    if (imagensUrl != null) {
+      produtoData['imagensUrl'] = imagensUrl;
     }
 
     notifyListeners();
