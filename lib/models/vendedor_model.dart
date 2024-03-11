@@ -20,7 +20,7 @@ class VendedorModel {
   factory VendedorModel.fromJson(Map<String, dynamic> json) {
     return VendedorModel(
       aprovado: json['aprovado'] as bool,
-      razaoSocial: json['razao_social'] as String,
+      razaoSocial: json['razão_social'] as String,
       cidade: json['cidade'] as String,
       email: json['email'] as String,
       estado: json['estado'] as String,
@@ -32,7 +32,7 @@ class VendedorModel {
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'aprovado': aprovado,
-      'razao_social': razaoSocial,
+      'razão_social': razaoSocial,
       'cidade': cidade,
       'email': email,
       'estado': estado,

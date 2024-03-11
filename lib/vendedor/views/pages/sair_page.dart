@@ -19,6 +19,7 @@ class SairPage extends StatelessWidget {
               fontSize: 18,
               letterSpacing: 4,
               fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           ),
         ),

@@ -34,7 +34,7 @@ class ProdutoProvider with ChangeNotifier {
       produtoData['cobrar_frete'] = cobrarFrete;
     }
     if (precoFrete != null) {
-      produtoData['preço_frete'] = produtoData;
+      produtoData['preço_frete'] = precoFrete;
     }
     if (marca != null) {
       produtoData['marca'] = marca;
@@ -43,9 +43,14 @@ class ProdutoProvider with ChangeNotifier {
       produtoData['medidas'] = medidas;
     }
     if (imagensUrl != null) {
-      produtoData['imagensUrl'] = imagensUrl;
+      produtoData['imagens_url'] = imagensUrl;
     }
 
+    notifyListeners();
+  }
+
+  clearData() {
+    produtoData.clear();
     notifyListeners();
   }
 }

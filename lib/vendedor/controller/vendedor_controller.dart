@@ -55,7 +55,7 @@ class VendedorController {
           .collection('vendedores')
           .doc(_auth.currentUser!.uid)
           .set({
-        'razao_social': razaoSocial,
+        'razão_social': razaoSocial,
         'imagem_loja': downloadURL,
         'email': email,
         'telefone': telefone,

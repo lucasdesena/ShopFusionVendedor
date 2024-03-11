@@ -47,7 +47,7 @@ class _EnvioPageState extends State<EnvioPage>
                     },
                     onChanged: (value) {
                       produtoProvider.getFormData(
-                          precoProduto: double.parse(value));
+                          precoFrete: double.parse(value));
                     },
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
