@@ -79,7 +79,8 @@ class _CarregamentoPageState extends State<CarregamentoPage> {
                     'preço_frete': produtoProvider.produtoData['preço_frete'],
                     'marca': produtoProvider.produtoData['marca'],
                     'medidas': produtoProvider.produtoData['medidas'],
-                    'imagens_url': produtoProvider.produtoData['imagens_url'],
+                    'imagens_produto':
+                        produtoProvider.produtoData['imagens_produto'],
                     'razão_social': (userDoc.data()
                         as Map<String, dynamic>)['razão_social'],
                     'imagem_loja':

@@ -103,7 +103,7 @@ class _ImagensPageState extends State<ImagensPage>
                         EasyLoading.dismiss();
                       });
 
-                      produtoProvider.getFormData(imagensUrl: _imagensUrl);
+                      produtoProvider.getFormData(imagensProduto: _imagensUrl);
                     }
                   },
                   child: const Text(

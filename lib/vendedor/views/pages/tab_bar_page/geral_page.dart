@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_fusion_vendedor/vendedor/provider/produto_provider.dart';
 
@@ -69,6 +70,7 @@ class _GeralPageState extends State<GeralPage>
               ),
               const SizedBox(height: 20),
               TextFormField(
+                keyboardType: const TextInputType.numberWithOptions(),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Insira o preço do produto';
@@ -87,6 +89,7 @@ class _GeralPageState extends State<GeralPage>
               ),
               const SizedBox(height: 20),
               TextFormField(
+                keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Insira a quantidade do produto';
@@ -97,6 +100,7 @@ class _GeralPageState extends State<GeralPage>
                   produtoProvider.getFormData(
                       quantidadeProduto: int.parse(value));
                 },
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: const InputDecoration(
                   labelText: 'Insira a quantidade do produto',
                   labelStyle:
@@ -121,24 +125,27 @@ class _GeralPageState extends State<GeralPage>
                 },
               ),
               const SizedBox(height: 20),
-              TextFormField(
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Insira a descrição do produto';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  produtoProvider.getFormData(descicao: value);
-                },
-                maxLines: 10,
-                minLines: 3,
-                maxLength: 800,
-                decoration: const InputDecoration(
-                  hintText: 'Insira a descrição do produto',
-                  labelText: 'Descrição do produto',
-                  labelStyle:
-                      TextStyle(fontWeight: FontWeight.bold, letterSpacing: 4),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 80),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Insira a descrição do produto';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    produtoProvider.getFormData(descicao: value);
+                  },
+                  maxLines: 10,
+                  minLines: 3,
+                  maxLength: 800,
+                  decoration: const InputDecoration(
+                    hintText: 'Insira a descrição do produto',
+                    labelText: 'Descrição do produto',
+                    labelStyle: TextStyle(
+                        fontWeight: FontWeight.bold, letterSpacing: 4),
+                  ),
                 ),
               ),
             ],
