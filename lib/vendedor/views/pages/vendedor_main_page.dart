@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/carregamento_page.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/editar_page.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/ganhos_page.dart';
+import 'package:shop_fusion_vendedor/vendedor/views/pages/pedidos_page.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/sair_page.dart';
 
 class VendedorMainPage extends StatefulWidget {
@@ -17,6 +18,7 @@ class _VendedorMainPageState extends State<VendedorMainPage> {
   final List<Widget> _pages = [
     const GanhosPage(),
     const CarregamentoPage(),
+    PedidosPage(),
     const EditarPage(),
     SairPage()
   ];
@@ -41,6 +43,10 @@ class _VendedorMainPageState extends State<VendedorMainPage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.upload),
               label: 'Carregar',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shop),
+              label: 'Pedidos',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.edit),
