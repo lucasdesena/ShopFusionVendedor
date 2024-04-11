@@ -98,14 +98,15 @@ class _CarregamentoPageState extends State<CarregamentoPage> {
                 }
               },
               child: const Center(
-                  child: Text(
-                'Enviar produto',
-                style: TextStyle(
-                  color: Colors.white,
-                  letterSpacing: 5,
-                  fontWeight: FontWeight.bold,
+                child: Text(
+                  'Enviar produto',
+                  style: TextStyle(
+                    color: Colors.white,
+                    letterSpacing: 5,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              )),
+              ),
             ),
           ),
         ),

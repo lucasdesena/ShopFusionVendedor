@@ -16,7 +16,7 @@ class _VendedorMainPageState extends State<VendedorMainPage> {
   int _pageIndex = 0;
 
   final List<Widget> _pages = [
-    const GanhosPage(),
+    GanhosPage(),
     const CarregamentoPage(),
     PedidosPage(),
     const EditarPage(),

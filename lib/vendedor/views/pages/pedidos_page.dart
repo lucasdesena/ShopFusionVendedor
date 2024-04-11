@@ -11,7 +11,7 @@ class PedidosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> categoriasStream = _firestore
+    final Stream<QuerySnapshot> pedidosStream = _firestore
         .collection('pedidos')
         .where('id_vendedor', isEqualTo: _auth.currentUser!.uid)
         .snapshots();
@@ -21,7 +21,7 @@ class PedidosPage extends StatelessWidget {
         title: const Text('Pedidos'),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: categoriasStream,
+        stream: pedidosStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Text('Algo deu errado');
