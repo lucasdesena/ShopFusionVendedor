@@ -4,6 +4,7 @@ import 'package:shop_fusion_vendedor/vendedor/views/pages/editar_page.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/ganhos_page.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/pedidos_page.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/sair_page.dart';
+import 'package:shop_fusion_vendedor/vendedor/views/pages/vendedor_conversa_page.dart';
 
 class VendedorMainPage extends StatefulWidget {
   const VendedorMainPage({super.key});
@@ -19,6 +20,7 @@ class _VendedorMainPageState extends State<VendedorMainPage> {
     GanhosPage(),
     const CarregamentoPage(),
     PedidosPage(),
+    const VendedorConversaPage(),
     const EditarPage(),
     SairPage()
   ];
@@ -47,6 +49,10 @@ class _VendedorMainPageState extends State<VendedorMainPage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.shop),
               label: 'Pedidos',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.message),
+              label: 'Conversa',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.edit),

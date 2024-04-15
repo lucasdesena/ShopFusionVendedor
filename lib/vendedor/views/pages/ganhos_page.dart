@@ -17,6 +17,7 @@ class GanhosPage extends StatelessWidget {
     final Stream<QuerySnapshot> pedidosStream = _firestore
         .collection('pedidos')
         .where('id_vendedor', isEqualTo: _auth.currentUser!.uid)
+        .where('aceito', isEqualTo: true)
         .snapshots();
 
     return FutureBuilder<DocumentSnapshot>(
@@ -147,7 +148,7 @@ class GanhosPage extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '${snapshot.data!.docs.where((pedido) => pedido['aceito']).length}',
+                                  '${snapshot.data!.docs.length}',
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 18,

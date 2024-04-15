@@ -2,7 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_fusion_vendedor/vendedor/controller/chat_controller.dart';
 import 'package:shop_fusion_vendedor/vendedor/provider/produto_provider.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/auth/vendedor_auth_page.dart';
 
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'ShopFusion Vendedor',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -58,6 +60,9 @@ class MyApp extends StatelessWidget {
       ),
       home: const VendedorAuthPage(),
       builder: EasyLoading.init(),
+      initialBinding: BindingsBuilder(() {
+        Get.put(ChatController());
+      }),
     );
   }
 }
