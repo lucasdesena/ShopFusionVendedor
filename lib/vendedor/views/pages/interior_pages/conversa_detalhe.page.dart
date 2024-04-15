@@ -32,6 +32,8 @@ class _ConversaDetalhePageState extends State<ConversaDetalhePage> {
 
   late Stream<QuerySnapshot> chatStream;
 
+  String nome = '';
+
   @override
   void initState() {
     chatStream =

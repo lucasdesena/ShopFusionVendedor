@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/carregamento_page.dart';
-import 'package:shop_fusion_vendedor/vendedor/views/pages/editar_page.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/ganhos_page.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/pedidos_page.dart';
 import 'package:shop_fusion_vendedor/vendedor/views/pages/sair_page.dart';
@@ -21,7 +20,6 @@ class _VendedorMainPageState extends State<VendedorMainPage> {
     const CarregamentoPage(),
     PedidosPage(),
     const VendedorConversaPage(),
-    const EditarPage(),
     SairPage()
   ];
   @override
@@ -52,11 +50,7 @@ class _VendedorMainPageState extends State<VendedorMainPage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.message),
-              label: 'Conversa',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.edit),
-              label: 'Editar',
+              label: 'Conversas',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.logout),
